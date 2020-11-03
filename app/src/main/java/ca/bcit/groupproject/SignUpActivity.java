@@ -63,22 +63,39 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required");
             editTextFullName.requestFocus();
+            return;
         }
 
         if (age.isEmpty()) {
             editTextAge.setError("Age is required");
             editTextAge.requestFocus();
+            return;
         }
 
-//        if (email.isEmpty()) {
-//            editTextFullName.setError("Email is required");
-//            editTextFullName.requestFocus();
-//        }
-//
-//        if (!Patterns.EMAIL_ADDRESS.matcher((email).matches())) {
-//            editTextFullName.setError("Email is required");
-//            editTextFullName.requestFocus();
-//        }
+        if (email.isEmpty()) {
+            editTextFullName.setError("Email is required");
+            editTextFullName.requestFocus();
+            return;
+        }
 
-    }
+        if (!Patterns.EMAIL_ADDRESS.matcher((email).matches()) {
+            editTextFullName.setError("Email is required");
+            editTextFullName.requestFocus();
+            return;
+        }
+
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+        if (password.length() < 6 ) {
+            editTextPassword.setError("Min password length should be 6 characters");
+            editTextPassword.requestFocus();
+            return;
+        }
+
+
+        }
 }
