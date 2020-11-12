@@ -30,7 +30,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
 
         signIn = (Button) findViewById(R.id.signIn);
-        signIn.setOnClickListener(this)
+        signIn.setOnClickListener(this);
+
+        editTextEmail = (EditText) findViewById(R.id.email);
+        editTextPassword = (EditText) findViewById(R.id.password);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
     }
 
     @Override
@@ -39,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.register:
                 startActivity(new Intent(this, SignUpActivity.class));
                 break;
+
+            case R.id.signIn:
+                userLogin();
+                break;
         }
     }
+
+    private void userLogin();
 }
