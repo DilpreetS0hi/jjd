@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Group Project</string>
+
+
+
+<!--
+     Address layout
+-->
+    <string name="find_button">Find</string>
+    <string name="address_et">Enter your address</string>
+
 </resources>
