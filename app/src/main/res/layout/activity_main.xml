@@ -76,6 +76,21 @@
         app:layout_constraintTop_toBottomOf="@id/password"
         />
 
+        <Button
+            android:id="@+id/noLogin"
+            android:layout_width="380dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#0ED6B9"
+            android:text="Continue without Login"
+            android:textColor="#ffffff"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signIn"
+            />
+
     <TextView
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
@@ -83,11 +98,13 @@
         android:text="Forgot Password"
         android:textSize = "16sp"
         android:textStyle= "bold"
-        app:layout_constraintTop_toBottomOf="@id/signIn"
+        app:layout_constraintTop_toBottomOf="@id/noLogin"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="50dp"
         />
+
+
 
     <TextView
         android:id="@+id/register"

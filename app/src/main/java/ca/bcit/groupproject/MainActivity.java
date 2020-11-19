@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView register;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
+    private Button noLogin;
 
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
 
         signIn = (Button) findViewById(R.id.signIn);
+        noLogin = (Button) findViewById(R.id.noLogin);
         signIn.setOnClickListener(this);
+        noLogin.setOnClickListener(this);
 
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.password);
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.signIn:
                 userLogin();
+                break;
+
+            case R.id.noLogin:
+                startActivity(new Intent(this, ActivityAddress.class));
                 break;
         }
     }
