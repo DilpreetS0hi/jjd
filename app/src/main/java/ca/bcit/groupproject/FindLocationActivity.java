@@ -37,7 +37,8 @@ public class FindLocationActivity extends AppCompatActivity {
 
     private void findWithAddress() {
         String userLocation = postalCode.getText().toString().trim();
-        String regex = "/^(?:[ABCEGHJ-NPRSTVXY]\\d[A-Z][ -]?\\d[A-Z]\\d)$/i";
+//        String regex = "/^(?:[ABCEGHJ-NPRSTVXY]\\d[A-Z][ -]?\\d[A-Z]\\d)$/i";
+        String regex = "/^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$/";
         Pattern pattern = Pattern.compile(regex);
 
         if (TextUtils.isEmpty(userLocation)) {
@@ -45,7 +46,7 @@ public class FindLocationActivity extends AppCompatActivity {
             return;
         }
 
-        if (!pattern.matcher(userLocation).matches()) {
+        if (pattern.matcher(userLocation).matches()) {
             Toast.makeText(this, "Invalid form of address", Toast.LENGTH_LONG).show();
             return;
         }
