@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class FindLocationActivity extends AppCompatActivity {
 
     private EditText postalCode;
@@ -34,9 +37,16 @@ public class FindLocationActivity extends AppCompatActivity {
 
     private void findWithAddress() {
         String userLocation = postalCode.getText().toString().trim();
+        String regex = "/^(?:[ABCEGHJ-NPRSTVXY]\\d[A-Z][ -]?\\d[A-Z]\\d)$/i";
+        Pattern pattern = Pattern.compile(regex);
 
         if (TextUtils.isEmpty(userLocation)) {
             Toast.makeText(this, "This field can't be empty", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!pattern.matcher(userLocation).matches()) {
+            Toast.makeText(this, "Invalid form of address", Toast.LENGTH_LONG).show();
             return;
         }
 
