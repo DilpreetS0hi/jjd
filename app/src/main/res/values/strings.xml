@@ -4,9 +4,9 @@
 
 
 <!--
-     Address layout
+     finding user location
 -->
     <string name="find_button">Find</string>
-    <string name="address_et">Enter your address</string>
+    <string name="address_et">Enter your postal code</string>
 
 </resources>

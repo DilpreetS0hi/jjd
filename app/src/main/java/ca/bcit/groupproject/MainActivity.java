@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.noLogin:
-                startActivity(new Intent(this, ActivityAddress.class));
+                startActivity(new Intent(this, FindLocationActivity.class));
                 break;
         }
     }
