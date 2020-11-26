@@ -31,8 +31,9 @@
             android:value="@string/google_maps_key" />
 
 
+        <activity android:name=".CurrentLocationActivity" />
+
         <activity android:name=".MapsActivity" />
-        <activity android:name=".MapActivity" />
         <activity android:name=".FindLocationActivity"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
