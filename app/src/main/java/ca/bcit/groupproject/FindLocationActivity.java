@@ -57,7 +57,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
             return;
         }
 
-        startActivity(new Intent(this, MapActivity.class));
+        startActivity(new Intent(this, MapsActivity.class));
 
 
     }
