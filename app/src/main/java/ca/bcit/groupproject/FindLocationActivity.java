@@ -1,5 +1,6 @@
 package ca.bcit.groupproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,10 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FindLocationActivity extends AppCompatActivity {
+public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText postalCode;
     private Button findWithAddress;
@@ -25,13 +27,17 @@ public class FindLocationActivity extends AppCompatActivity {
 
         postalCode = findViewById(R.id.address);
         findWithAddress = findViewById(R.id.findWithAddress);
+        findWithAddress.setOnClickListener(this);
 
-        findWithAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findWithAddress();
-            }
-        });
+
+//        findWithAddress.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(this, MapActivity.class));
+//                findWithAddress();
+//
+//            }
+//        });
 
     }
 
@@ -51,6 +57,14 @@ public class FindLocationActivity extends AppCompatActivity {
             return;
         }
 
+        startActivity(new Intent(this, MapActivity.class));
+
+
     }
 
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(this, MapsActivity.class));
+
+    }
 }
