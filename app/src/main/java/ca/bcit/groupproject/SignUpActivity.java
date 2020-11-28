@@ -1,6 +1,5 @@
 package ca.bcit.groupproject;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -34,18 +33,18 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
-        banner = (TextView) findViewById(R.id.banner);
+        banner = findViewById(R.id.banner);
         banner.setOnClickListener(this);
 
         registerUser = (Button) findViewById(R.id.register);
         registerUser.setOnClickListener(this);
 
-        editTextFullName = (EditText) findViewById(R.id.fullName);
-        editTextAge = (EditText) findViewById(R.id.age);
-        editTextEmail = (EditText) findViewById(R.id.email);
-        editTextPassword = (EditText) findViewById(R.id.password);
+        editTextFullName = findViewById(R.id.fullName);
+        editTextAge = findViewById(R.id.age);
+        editTextEmail = findViewById(R.id.email);
+        editTextPassword = findViewById(R.id.password);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
     }
 
     @Override
@@ -96,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        if (password.length() < 6 ) {
+        if (password.length() < 6) {
             editTextPassword.setError("Min password length should be 6 characters");
             editTextPassword.requestFocus();
             return;
@@ -107,34 +106,27 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                if(task.isSuccessful()) {
-                                    User user = new User(fullName, age, email);
-
-                                    FirebaseDatabase.getInstance().getReference("Users")
-                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                            if(task.isSuccessful()) {
-                                                Toast.makeText(SignUpActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
-                                                progressBar.setVisibility(View.VISIBLE);
-                                            } else {
-                                                Toast.makeText(SignUpActivity.this, "failed to register please try again", Toast.LENGTH_SHORT).show();
-                                                progressBar.setVisibility(View.GONE);
-
-                                            }
-                                        }
-                                            });
+                        if (task.isSuccessful()) {
+                            User user = new User(fullName, age, email);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(SignUpActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
                                     } else {
-                                    Toast.makeText(SignUpActivity.this, "failed to register", Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.GONE);
+                                        progressBar.setVisibility(View.GONE);
+                                        Toast.makeText(SignUpActivity.this, "failed to register please try again", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-
+                            });
+                        } else {
+                            Toast.makeText(SignUpActivity.this, "failed to register", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 });
-
-
-        }
+    }
 }

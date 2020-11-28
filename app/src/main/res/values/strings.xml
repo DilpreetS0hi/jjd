@@ -15,7 +15,7 @@
     <string name="zoomOut">-</string>
     <string name="custom">Custom Map</string>
     <string name="current_location">Current Location</string>
-
+    <string name="auth_failed">Auth Failed</string>
 
 
 </resources>
