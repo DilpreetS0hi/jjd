@@ -24,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private FirebaseAuth mAuth;
     private TextView banner, registerUser;
-    private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
+    private EditText editTextFullName, editTextPostalCode, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
 
 
@@ -84,8 +84,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (postalCode.isEmpty()) {
-            editTextAge.setError("Postal code is empty");
-            editTextAge.requestFocus();
+            editTextPostalCode.setError("Postal code is empty");
+            editTextPostalCode.requestFocus();
             return;
         }
 
@@ -119,7 +119,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(fullName, age, email);
+                            User user = new User(fullName, postalCode, email);
                             FirebaseDatabase.getInstance().getReference(USER)
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
