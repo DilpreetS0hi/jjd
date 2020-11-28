@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         registerUser.setOnClickListener(this);
 
         editTextFullName = findViewById(R.id.fullName);
-        editTextAge = findViewById(R.id.age);
+        editTextAge = findViewById(R.id.postalCode);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
 
