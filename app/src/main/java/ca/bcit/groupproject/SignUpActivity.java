@@ -21,6 +21,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
@@ -112,6 +115,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         if (password.length() < 6) {
             editTextPassword.setError("Min password length should be 6 characters");
             editTextPassword.requestFocus();
+            return;
+        }
+
+        String regex = "^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(postalCode);
+        if (!matcher.matches()) {
+            Toast.makeText(this, "Invalid form of postal code", Toast.LENGTH_LONG).show();
             return;
         }
 
