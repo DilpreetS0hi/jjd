@@ -22,15 +22,24 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
     private EditText editTextEmail, editTextPassword;
-
-    private FirebaseAuth mAuth;
     private ProgressBar progressBar;
+
+    // auth
+    private FirebaseAuth mAuth;
+
+    // firebase
+    private FirebaseDatabase userDB;
+    private DatabaseReference mDb;
+
+    private static final String USER = "User";
 
     public MainActivity() {
     }
@@ -53,6 +62,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
         mAuth.signOut();
+
+//        userDB = FirebaseDatabase.getInstance();
+//        mDb = userDB.getReference(USER);
+//        mAuth = FirebaseAuth.getInstance();
+
+
     }
 
     @Override

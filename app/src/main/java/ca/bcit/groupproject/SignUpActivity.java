@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -25,6 +26,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private TextView banner, registerUser;
     private EditText editTextFullName, editTextAge, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
+
+
+
+    private FirebaseDatabase userDB;
+    private DatabaseReference mDb;
+
+    private static final String USER = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +48,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         registerUser.setOnClickListener(this);
 
         editTextFullName = findViewById(R.id.fullName);
-        editTextAge = findViewById(R.id.postalCode);
+        editTextPostalCode = findViewById(R.id.postalCode);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
 
         progressBar = findViewById(R.id.progressBar);
+
+        userDB = FirebaseDatabase.getInstance();
+        mDb = userDB.getReference(USER);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -61,9 +73,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void registerUser() {
         final String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
         final String fullName = editTextFullName.getText().toString().trim();
-        final String age = editTextAge.getText().toString().trim();
+        final String postalCode = editTextPostalCode.getText().toString().trim();
 
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required");
@@ -71,8 +83,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        if (age.isEmpty()) {
-            editTextAge.setError("Age is required");
+        if (postalCode.isEmpty()) {
+            editTextAge.setError("Postal code is empty");
             editTextAge.requestFocus();
             return;
         }
@@ -108,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             User user = new User(fullName, age, email);
-                            FirebaseDatabase.getInstance().getReference("Users")
+                            FirebaseDatabase.getInstance().getReference(USER)
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

@@ -1,15 +1,15 @@
 package ca.bcit.groupproject;
 
 public class User {
-    public String fullName, age, email;
+    public String fullName, postalCode, email;
 
     public User() {
 
     }
 
-    public User(String fullName, String age, String email) {
+    public User(String fullName, String postalCode, String email) {
         this.fullName = fullName;
-        this.age = age;
+        this.postalCode = postalCode;
         this.email = email;
     }
 
@@ -21,12 +21,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getAge() {
-        return age;
+    public String getPostalCode() {
+        return postalCode;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setPostalCode(String age) {
+        this.postalCode = postalCode;
     }
 
     public String getEmail() {
