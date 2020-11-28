@@ -4,7 +4,6 @@ public class User {
     public String fullName, postalCode, email;
 
     public User() {
-
     }
 
     public User(String fullName, String postalCode, String email) {
@@ -12,6 +11,8 @@ public class User {
         this.postalCode = postalCode;
         this.email = email;
     }
+
+
 
     public String getFullName() {
         return fullName;

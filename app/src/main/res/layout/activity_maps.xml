@@ -27,9 +27,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextLocation"
-            android:layout_width="190dp"
+        <Spinner
+            android:id="@+id/sp_type"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
@@ -40,13 +40,6 @@
             android:onClick="onSearch"
             android:text="@string/search" />
 
-        <Button
-            android:id="@+id/btnCurrentLoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:onClick="onCurrentLocation"
-            android:text="@string/current_location" />
 
     </LinearLayout>
 

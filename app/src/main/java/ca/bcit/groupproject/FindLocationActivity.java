@@ -78,7 +78,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         Log.i(TAG, "postalCode: " + userLocation);
         Matcher matcher = pattern.matcher(userLocation);
         if (!matcher.matches()) {
-            Toast.makeText(this, "Invalid form of address", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Invalid form of postal code", Toast.LENGTH_LONG).show();
             return;
         }
 

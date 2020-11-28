@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,9 +31,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private FirebaseDatabase userDB;
-    private DatabaseReference mDb;
 
-    private static final String USER = "User";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +53,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         progressBar = findViewById(R.id.progressBar);
 
-        userDB = FirebaseDatabase.getInstance();
-        mDb = userDB.getReference(USER);
-        mAuth = FirebaseAuth.getInstance();
+
     }
 
     @Override
@@ -72,10 +69,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerUser() {
+
         final String email = editTextEmail.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String fullName = editTextFullName.getText().toString().trim();
         final String postalCode = editTextPostalCode.getText().toString().trim();
+
+
+
+        // validation
 
         if (fullName.isEmpty()) {
             editTextFullName.setError("Full name is required");
@@ -113,14 +115,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(fullName, postalCode, email);
-                            FirebaseDatabase.getInstance().getReference(USER)
+                            final User user = new User(fullName, postalCode, email);
+                            FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -128,6 +131,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                                     if (task.isSuccessful()) {
                                         progressBar.setVisibility(View.GONE);
                                         Toast.makeText(SignUpActivity.this, "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                        Intent loginIntent = new Intent(SignUpActivity.this, FindLocationActivity.class);
+                                        startActivity(loginIntent);
+
                                     } else {
                                         progressBar.setVisibility(View.GONE);
                                         Toast.makeText(SignUpActivity.this, "failed to register please try again", Toast.LENGTH_SHORT).show();
@@ -141,4 +147,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 });
     }
+
+
 }
