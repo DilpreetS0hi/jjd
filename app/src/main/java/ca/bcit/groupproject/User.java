@@ -26,7 +26,7 @@ public class User {
         return postalCode;
     }
 
-    public void setPostalCode(String age) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
