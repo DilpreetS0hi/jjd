@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "postalCode";
-    private EditText postalCode;
+    private EditText postalCodeEditText;
 
     public FindLocationActivity() {
     }
@@ -38,7 +38,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_location);
         final TextView greeting = findViewById(R.id.greeting);
-        postalCode = findViewById(R.id.address);
+        postalCodeEditText = findViewById(R.id.address);
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 //        assert user != null;
@@ -49,7 +49,9 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String fullName = Objects.requireNonNull(snapshot.child("fullName").getValue()).toString();
+                    String postalCode = Objects.requireNonNull(snapshot.child("postalCode").getValue()).toString();
                     greeting.setText("Hello, " + fullName + ".");
+                    postalCodeEditText.setText(postalCode);
                 }
 
                 @Override
@@ -65,7 +67,7 @@ public class FindLocationActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void findWithAddress() {
-        String userLocation = postalCode.getText().toString().toUpperCase();
+        String userLocation = postalCodeEditText.getText().toString().toUpperCase();
 //        String regex = "/^(?:[ABCEGHJ-NPRSTVXY]\\d[A-Z][ -]?\\d[A-Z]\\d)$/i";
 //        String regex = "/^[A-Za-z]\\d[A-Za-z][ -]?\\d[A-Za-z]\\d$/";
         String regex = "^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$";
