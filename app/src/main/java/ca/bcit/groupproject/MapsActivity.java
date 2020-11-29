@@ -75,8 +75,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         spinner = findViewById(R.id.sp_type);
 
 
-        final String[] placeTypeList = {"where+to+buy+medical+mask+near+me", "sanitizer", "clinic", "hospital"};
-        String[] placeNameList = {"Mask", "Sanitizer", "Clinic", "Hospital"};
+        final String[] placeTypeList = {"medicalmask",
+                "where+to+buy+sanitizer+near+me",
+                "clinic+near+me",
+                "hospital+near+me",
+                "covid+testing+near+me"
+        };
+        String[] placeNameList = {"Mask", "Sanitizer", "Clinic", "Hospital", "Covid Testing"};
 
         spinner.setAdapter(new ArrayAdapter<>(MapsActivity.this
                 , android.R.layout.simple_spinner_dropdown_item, placeNameList));
@@ -86,7 +91,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MapsActivity.this, "this button is working properly" + latLng, Toast.LENGTH_LONG).show();
 
                 int i = spinner.getSelectedItemPosition();
 
@@ -140,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 latLng = new LatLng(lat, lng);
                 Log.i(TAG, "TestgeoLocate: " + latLng);
                 mMap.addMarker(new MarkerOptions().position(latLng).title("Postal Code: " + value));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
 ;
             }
         } catch (IOException e) {

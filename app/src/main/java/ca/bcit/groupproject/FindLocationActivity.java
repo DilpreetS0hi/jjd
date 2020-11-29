@@ -25,7 +25,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class FindLocationActivity extends AppCompatActivity implements View.OnClickListener {
+public class    FindLocationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "postalCode";
     private EditText postalCodeEditText;
