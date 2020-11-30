@@ -110,8 +110,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextFullName.setError("Email is required");
-            editTextFullName.requestFocus();
+            editTextEmail.setError("Not a valid format of email");
+            editTextEmail.requestFocus();
             return;
         }
 
