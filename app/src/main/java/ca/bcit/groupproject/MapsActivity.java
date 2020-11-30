@@ -75,11 +75,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         spinner = findViewById(R.id.sp_type);
 
 
-        final String[] placeTypeList = {"medicalmask",
-                "where+to+buy+sanitizer+near+me",
+        final String[] placeTypeList = {"where+to+buy+medical+mask+near+me",
+                "where+to+buy+hand+sanitizer+near+me",
                 "clinic+near+me",
                 "hospital+near+me",
-                "covid+testing+near+me"
+                "covid+testing+site"
         };
         String[] placeNameList = {"Mask", "Sanitizer", "Clinic", "Hospital", "Covid Testing"};
 
@@ -96,8 +96,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
                         lat + "," + lng +
-                        "&radius=1500" +
-                        "&types=" + placeTypeList[i] +
+                        "&radius=3000" +
+                        "&keyword=" + placeTypeList[i] +
                         "&sensor=true" +
                         "&key=" + getResources().getString(R.string.google_maps_key);
                 System.out.println("jayjay" + url);
@@ -144,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 latLng = new LatLng(lat, lng);
                 Log.i(TAG, "TestgeoLocate: " + latLng);
                 mMap.addMarker(new MarkerOptions().position(latLng).title("Postal Code: " + value));
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 5));
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
 ;
             }
         } catch (IOException e) {
