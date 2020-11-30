@@ -8,6 +8,14 @@
 -->
     <string name="find_button">Find</string>
     <string name="address_et">Enter your postal code</string>
+    <string name="email_hint">Email Address</string>
+    <string name="app_title">Covia</string>
+    <string name="app_description">Find your nearest Covid-19 resources</string>
+    <string name="register_txt">Register</string>
+    <string name="continue_with_out_login_button">Continue without Login</string>
+    <string name="login_button">Login</string>
+    <string name="password_hint">Password</string>
+
 
     <string name="search">Search</string>
     <string name="mapType">Toggle Type</string>
