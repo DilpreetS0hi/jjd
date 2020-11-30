@@ -94,6 +94,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+        String regex = "^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(postalCode);
+        if (!matcher.matches()) {
+            editTextPostalCode.setError("Invalid form of postal code");
+            editTextPostalCode.requestFocus();
+            return;
+        }
+
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
@@ -118,13 +127,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        String regex = "^(?!.*[DFIOQU])[A-VXY][0-9][A-Z] ?[0-9][A-Z][0-9]$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(postalCode);
-        if (!matcher.matches()) {
-            Toast.makeText(this, "Invalid form of postal code", Toast.LENGTH_LONG).show();
-            return;
-        }
+
 
 
         progressBar.setVisibility(View.VISIBLE);
