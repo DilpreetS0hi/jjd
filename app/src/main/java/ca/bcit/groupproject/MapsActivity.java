@@ -96,11 +96,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
                         lat + "," + lng +
-                        "&radius=3000" +
+                        "&radius=10000" +
                         "&keyword=" + placeTypeList[i] +
                         "&sensor=true" +
                         "&key=" + getResources().getString(R.string.google_maps_key);
-                System.out.println("jayjay" + url);
 
                 new placeTask().execute(url);
             }
@@ -142,7 +141,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 lat = address.getLatitude();
                 lng = address.getLongitude();
                 latLng = new LatLng(lat, lng);
-                Log.i(TAG, "TestgeoLocate: " + latLng);
                 mMap.addMarker(new MarkerOptions().position(latLng).title("Postal Code: " + value));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 12));
 ;
